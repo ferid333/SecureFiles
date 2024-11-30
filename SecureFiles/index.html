@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureFiles</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">SecureFiles</div>
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="https://github.com/ferid333" target="_blank">GitHub</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Encrypt and Decrypt Files Securely</h1>
+        <p>SecureFiles allows you to encrypt or decrypt files directly in your browser.</p>
+
+        <div class="form-group">
+            <label for="file">Upload a file:</label>
+            <input type="file" id="file" />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Enter a password:</label>
+            <input type="password" id="password" placeholder="Password" />
+        </div>
+
+        <div class="buttons">
+            <button onclick="handleFileUpload(true)">Encrypt</button>
+            <button onclick="handleFileUpload(false)">Decrypt</button>
+        </div>
+
+        <button id="downloadButton" style="display: none;" onclick="downloadProcessedFile()">
+            Download File
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
