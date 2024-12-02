@@ -47,6 +47,11 @@ python app.py
    - After processing, the "Save Processed File" button will be enabled. Click it to save your file automatically.
 
 ---
+## **Screenshots**
+### *Encryption and Decryption UI*  
+![UI Screenshot](https://github.com/ferid333/SecureFiles/blob/main/docs/assets/image_2024-12-02_114827417.png)  
+
+---
 
 ## **Contributing**
 Contributions are welcome! To contribute:
