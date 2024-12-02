@@ -47,6 +47,11 @@ git clone https://github.com/ferid333/SecureFiles.git
 Navigate to the project folder and open `index.html` in your browser.
 ---
 
+## **Desktop Version**
+For the desktop version of SecureFiles, you can refer to the dedicated [desktop version instructions here](Desktop_README.md). This version uses Python and the `tkinter` library to provide the same encryption and decryption functionality but in a desktop environment.
+
+---
+
 ## **Contributing**
 Contributions are welcome! To contribute:
 1. Fork the repository.
