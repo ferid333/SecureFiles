@@ -15,7 +15,7 @@ A simple, browser-based file encryption and decryption app. Secure your files wi
 ---
 
 ## **Live Demo**
-You can access the app directly at: [SecureFiles Web](https://yourusername.github.io/securefiles-web/) 
+You can access the app directly at: [SecureFiles Web](https://ferid333.github.io/SecureFiles/) 
 ---
 
 ## **How It Works**
@@ -32,7 +32,7 @@ You can access the app directly at: [SecureFiles Web](https://yourusername.githu
 
 ## **Screenshots**
 ### *Encryption and Decryption UI*  
-![UI Screenshot](https://github.com/ferid333/SecureFiles/blob/main/SecureFiles/assets/app.png)  
+![UI Screenshot](https://github.com/ferid333/SecureFiles/blob/main/docs/assets/app.png)  
 
 ---
 
