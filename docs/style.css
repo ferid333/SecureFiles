@@ -107,3 +107,9 @@ button:hover {
 #downloadButton:hover {
     background-color: #45a049;
 }
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+}

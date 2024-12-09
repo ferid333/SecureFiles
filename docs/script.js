@@ -1,6 +1,4 @@
-
 async function encryptFile(file, password) {
-
     const keyMaterial = await getKeyMaterial(password);
     const key = await getEncryptionKey(keyMaterial);
 
@@ -24,10 +22,8 @@ async function encryptFile(file, password) {
 }
 
 async function decryptFile(encryptedFile, password) {
-
     const keyMaterial = await getKeyMaterial(password);
     const key = await getEncryptionKey(keyMaterial);
-
 
     const iv = encryptedFile.slice(0, 12);
     const encryptedData = encryptedFile.slice(12);
@@ -43,6 +39,7 @@ async function decryptFile(encryptedFile, password) {
 
     return decryptedData;
 }
+
 async function getKeyMaterial(password) {
     const encoder = new TextEncoder();
     return window.crypto.subtle.importKey(
@@ -70,11 +67,11 @@ async function getEncryptionKey(keyMaterial) {
 }
 
 let processedFileBlob = null;
-let GisEncrypt=false
+let GisEncrypt = false;
+
 function handleFileUpload(isEncrypt) {
     const file = document.getElementById("file").files[0];
     const password = document.getElementById("password").value;
-    console.log(file)
     if (!file || !password) {
         alert("Please upload a file and enter a password.");
         return;
@@ -94,7 +91,7 @@ function handleFileUpload(isEncrypt) {
             const downloadButton = document.getElementById("downloadButton");
             downloadButton.style.display = "inline-block";
             downloadButton.textContent = isEncrypt ? "Download Encrypted File" : "Download Decrypted File";
-            GisEncrypt=isEncrypt
+            GisEncrypt = isEncrypt;
         } catch (error) {
             alert("Error: " + error.message);
         }
@@ -109,12 +106,60 @@ function downloadProcessedFile() {
         const url = URL.createObjectURL(processedFileBlob);
 
         downloadLink.href = url;
-        downloadLink.download = GisEncrypt ? document.getElementById("file").files[0].name + ".enc" : document.getElementById("file").files[0].name.replace(".enc", "");
+        downloadLink.download = GisEncrypt
+            ? document.getElementById("file").files[0].name + ".enc"
+            : document.getElementById("file").files[0].name.replace(".enc", "");
         downloadLink.click();
-
 
         URL.revokeObjectURL(url);
     } else {
         alert("No file is ready to download. Please encrypt or decrypt a file first.");
     }
 }
+
+function evaluatePasswordStrength(password) {
+    const strengthIndicator = document.getElementById("strength-indicator");
+    const strength = calculatePasswordStrength(password);
+
+    strengthIndicator.style.width = `${strength.percentage}%`;
+
+    strengthIndicator.className = "";
+    if (strength.strength === "Weak") {
+        strengthIndicator.classList.add("strength-weak");
+    } else if (strength.strength === "Medium") {
+        strengthIndicator.classList.add("strength-medium");
+    } else {
+        strengthIndicator.classList.add("strength-strong");
+    }
+}
+
+function calculatePasswordStrength(password) {
+    let strength = 0;
+    const lengthCriteria = password.length >= 8;
+    const numberCriteria = /\d/.test(password);
+    const lowercaseCriteria = /[a-z]/.test(password);
+    const uppercaseCriteria = /[A-Z]/.test(password);
+    const specialCharCriteria = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    if (lengthCriteria) strength += 1;
+    if (numberCriteria) strength += 1;
+    if (lowercaseCriteria) strength += 1;
+    if (uppercaseCriteria) strength += 1;
+    if (specialCharCriteria) strength += 1;
+
+    let strengthLevel = "Weak";
+    let percentage = (strength / 5) * 100;
+
+    if (strength >= 4) {
+        strengthLevel = "Strong";
+    } else if (strength >= 3) {
+        strengthLevel = "Medium";
+    }
+
+    return { strength: strengthLevel, percentage: percentage };
+}
+
+document.getElementById("password").addEventListener("input", function () {
+    const password = this.value;
+    evaluatePasswordStrength(password);
+});

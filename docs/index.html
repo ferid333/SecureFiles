@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureFiles</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .strength-bar {
+            height: 10px;
+            width: 100%;
+            background-color: #f0f0f0;
+            margin-top: 5px;
+        }
+        .strength-bar div {
+            height: 100%;
+        }
+        .strength-weak {
+            background-color: red;
+        }
+        .strength-medium {
+            background-color: yellow;
+        }
+        .strength-strong {
+            background-color: green;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -26,6 +46,9 @@
         <div class="form-group">
             <label for="password">Enter a password:</label>
             <input type="password" id="password" placeholder="Password" />
+            <div class="strength-bar">
+                <div id="strength-indicator"></div>
+            </div>
         </div>
 
         <div class="buttons">
