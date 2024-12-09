@@ -32,7 +32,7 @@ You can access the app directly at: [SecureFiles Web](https://ferid333.github.io
 
 ## **Screenshots**
 ### *Encryption and Decryption UI*  
-![UI Screenshot](https://github.com/ferid333/SecureFiles/blob/main/docs/assets/app.png)  
+![UI Screenshot](https://github.com/ferid333/SecureFiles/blob/main/docs/assets/Screenshot%202024-12-09%20163426.png)  
 
 ---
 
