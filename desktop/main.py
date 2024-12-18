@@ -36,6 +36,13 @@ class SecureFilesApp:
         tk.Label(self.container, text="Enter a Password:", bg="#f9f9f9").pack(pady=5)
         self.password_entry = tk.Entry(self.container, show="*", width=40)
         self.password_entry.pack(pady=5)
+        self.password_entry.bind("<KeyRelease>", self.update_password_strength)
+
+        self.strength_label = tk.Label(self.container, text="Password Strength: ", bg="#f9f9f9", font=("Arial", 12))
+        self.strength_label.pack(pady=5)
+
+        self.strength_bar = tk.Canvas(self.container, width=200, height=10, bg="#ddd", bd=0, highlightthickness=0)
+        self.strength_bar.pack(pady=5)
 
         self.button_frame = tk.Frame(self.container, bg="#f9f9f9")
         self.button_frame.pack(pady=20)
@@ -120,6 +127,35 @@ class SecureFilesApp:
             self.download_btn.config(state="disabled")
         except Exception as e:
             messagebox.showerror("Error", f"Failed to save file: {e}")
+
+    def update_password_strength(self, event):
+        password = self.password_entry.get()
+        strength, color = self.evaluate_password_strength(password)
+        self.strength_label.config(text=f"Password Strength: {strength}", fg=color)
+        self.update_strength_bar(strength)
+
+    def evaluate_password_strength(self, password):
+        length = len(password) >= 8
+        has_upper = any(c.isupper() for c in password)
+        has_lower = any(c.islower() for c in password)
+        has_digit = any(c.isdigit() for c in password)
+        has_special = any(c in "!@#$%^&*()-_=+[]{}|;:',.<>?/" for c in password)
+
+        score = sum([length, has_upper, has_lower, has_digit, has_special])
+
+        if score == 5:
+            return "Strong", "green"
+        elif score >= 3:
+            return "Medium", "orange"
+        else:
+            return "Weak", "red"
+
+    def update_strength_bar(self, strength):
+        colors = {"Weak": "red", "Medium": "orange", "Strong": "green"}
+        widths = {"Weak": 50, "Medium": 100, "Strong": 200}
+
+        self.strength_bar.delete("all")
+        self.strength_bar.create_rectangle(0, 0, widths[strength], 10, fill=colors[strength], outline="")
 
 
 if __name__ == "__main__":
