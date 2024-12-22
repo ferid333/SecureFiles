@@ -163,3 +163,18 @@ document.getElementById("password").addEventListener("input", function () {
     const password = this.value;
     evaluatePasswordStrength(password);
 });
+
+function updateFileInfo() {
+    const fileInput = document.getElementById("file");
+    const fileInfo = document.getElementById("fileInfo");
+
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const sizeInKB = (file.size / 1024).toFixed(2);
+        fileInfo.textContent = `Selected File: ${file.name} (${file.type}, ${sizeInKB} KB)`;
+    } else {
+        fileInfo.textContent = "No file selected";
+    }
+}
+
+document.getElementById("file").addEventListener("change", updateFileInfo);
