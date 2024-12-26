@@ -113,3 +113,67 @@ select {
     padding: 8px;
     margin-top: 10px;
 }
+
+.strength-bar {
+    height: 10px;
+    width: 100%;
+    background-color: #f0f0f0;
+    margin-top: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.strength-bar div {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+.strength-weak {
+    background-color: red;
+}
+.strength-medium {
+    background-color: yellow;
+}
+.strength-strong {
+    background-color: green;
+}
+#progress-container {
+    width: 100%;
+    background-color: #f0f0f0;
+    margin-top: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    display: none;
+}
+#progress-bar {
+    height: 10px;
+    background-color: #4caf50;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+.form-group {
+    margin: 20px 0;
+}
+.buttons {
+    margin-top: 20px;
+}
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #0056b3;
+}
+#downloadButton {
+    margin-top: 20px;
+}

@@ -5,26 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureFiles</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .strength-bar {
-            height: 10px;
-            width: 100%;
-            background-color: #f0f0f0;
-            margin-top: 5px;
-        }
-        .strength-bar div {
-            height: 100%;
-        }
-        .strength-weak {
-            background-color: red;
-        }
-        .strength-medium {
-            background-color: yellow;
-        }
-        .strength-strong {
-            background-color: green;
-        }
-    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -42,6 +22,10 @@
             <label for="file">Upload a file:</label>
             <input type="file" id="file" onchange="updateFileInfo()" />
             <p id="fileInfo" style="margin-top: 10px; color: #555;">No file selected</p>
+        </div>
+
+        <div id="progress-container">
+            <div id="progress-bar"></div>
         </div>
 
         <div class="form-group">

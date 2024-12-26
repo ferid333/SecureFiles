@@ -90,8 +90,12 @@ function handleFileUpload(isEncrypt) {
 
             const downloadButton = document.getElementById("downloadButton");
             downloadButton.style.display = "inline-block";
-            downloadButton.textContent = isEncrypt ? "Download Encrypted File" : "Download Decrypted File";
+            downloadButton.textContent = isEncrypt
+                ? "Download Encrypted File"
+                : "Download Decrypted File";
             GisEncrypt = isEncrypt;
+
+            alert("File processing complete!");
         } catch (error) {
             alert("Error: " + error.message);
         }
@@ -167,13 +171,36 @@ document.getElementById("password").addEventListener("input", function () {
 function updateFileInfo() {
     const fileInput = document.getElementById("file");
     const fileInfo = document.getElementById("fileInfo");
+    const progressBar = document.getElementById("progress-bar");
+    const progressContainer = document.getElementById("progress-container");
 
     if (fileInput.files.length > 0) {
         const file = fileInput.files[0];
         const sizeInKB = (file.size / 1024).toFixed(2);
         fileInfo.textContent = `Selected File: ${file.name} (${file.type}, ${sizeInKB} KB)`;
+
+        progressContainer.style.display = "block";
+        progressBar.style.width = "0%";
+
+        const reader = new FileReader();
+        reader.onprogress = function (event) {
+            if (event.lengthComputable) {
+                const progress = (event.loaded / event.total) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+        };
+
+        reader.onloadend = function () {
+            progressBar.style.width = "100%";
+            setTimeout(() => {
+                progressContainer.style.display = "none";
+            }, 1000);
+        };
+
+        reader.readAsArrayBuffer(file);
     } else {
         fileInfo.textContent = "No file selected";
+        progressContainer.style.display = "none";
     }
 }
 
